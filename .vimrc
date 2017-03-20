@@ -16,6 +16,9 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-sleuth'
 Plugin 'shougo/denite.nvim'
 Plugin 'vim-scripts/Auto-Pairs'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
