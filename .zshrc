@@ -91,6 +91,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time docker_machine)
  alias demr='docker exec -it myrewards_myrewards.app_1 /bin/bash'
  alias dere='docker exec -it redstone_redstone.app_1 /bin/bash'
  alias demg='docker exec -it mygames_mygames.app_1 /bin/bash'
+ alias det='docker exec -it thetavern_web_1 /bin/bash'
 
 
  ####################################
