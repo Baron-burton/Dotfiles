@@ -70,24 +70,10 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time docker_machine)
 
  ############
  # docker
- if command -v docker-machine > /dev/null 2>&1; then
-	 if [ $(docker-machine status) = "Running" ]; then
-		 eval $(docker-machine env default)
-	 else
-		 unset DOCKER_CERT_PATH
-		 unset DOCKER_HOST
-		 unset DOCKER_MACHINE_NAME
-		 unset DOCKER_TLS_VERIFY
-	 fi
- fi
 
- alias denv='eval $(docker-machine env default)'
  alias dp='docker ps'
- alias dr='docker-machine restart default'
  alias dup='docker-compose up'
  alias dk='docker-compose kill'
- alias dstop='docker-machine stop default'
- alias dstart='docker-machine start default'
  alias demr='docker exec -it myrewards_myrewards.app_1 /bin/bash'
  alias dere='docker exec -it redstone_redstone.app_1 /bin/bash'
  alias demg='docker exec -it mygames_mygames.app_1 /bin/bash'
