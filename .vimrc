@@ -19,6 +19,11 @@ Plugin 'vim-scripts/Auto-Pairs'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
+Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'prettier/vim-prettier'
+Plugin 'w0rp/ale'
+Plugin 'mattn/emmet-vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -34,6 +39,74 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+"-----------------------------
+"----- Prettier Settings -----
+let g:prettier#autoformat = 0
+let g:prettier#exec_cmd_async = 1
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql PrettierAsync
+
+" max line length that prettier will wrap on
+let g:prettier#config#print_width = 80
+" number of spaces per indentation level
+let g:prettier#config#tab_width = 4
+" single quotes over double quotes
+let g:prettier#config#single_quote = 'true'
+" print spaces between brackets
+let g:prettier#config#bracket_spacing = 'true'
+" none|es5|all
+let g:prettier#config#trailing_comma = 'none'
+" flow|babylon|typescript|postcss|json|graphql
+let g:prettier#config#parser = 'flow'
+
+"-------------------------
+"---------- ALE ----------
+scriptencoding utf-32
+
+let g:ale_linters = {
+      \   'Dockerfile': ['hadolint'],
+      \   'haml': ['haml_lint'],
+      \   'javascript': ['eslint', 'flow'],
+      \   'jsx': ['eslint', 'flow'],
+      \   'ruby': ['rubocop'],
+      \   'vim': ['vint'],
+      \   'yaml': ['yamllint'],
+      \ }
+
+let g:ale_fixers = {
+      \   'ruby': ['rubocop'],
+      \ }
+
+nnoremap <silent><C-n> :ALENext<cr>
+nnoremap <silent><C-p> :ALEPrevious<cr>
+nnoremap <silent><localleader>f   :ALEFix<cr>
+
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '••'
+let g:ale_sign_warning = '••'
+
+highlight link ALEErrorSign DiffDelete
+highlight link ALEError DiffDelete
+
+highlight link ALEWarningSign Todo
+highlight link ALEWarning Todo
+
+let g:ale_echo_msg_format = '%linter%: %s'
+
+"----------------------------
+"-------- Emmet-Vim ---------
+let g:user_emmet_leader_key='<c-e>'
+
+let g:user_emmet_settings = {
+\  'javascript.jsx' : {
+\      'extends' : 'jsx',
+\  },
+\}
+
+"----------------------------
+"----- VIM-JSX Settings -----
+let g:jsx_ext_required = 0
+
+"---------------------------
 let g:mapleader = "\<space>"
 let g:maplocalleader = "\<nul>"
 let g:airline_powerline_fonts = 1
@@ -44,7 +117,6 @@ colorscheme apprentice
 "---------- Vim Settings ----------
 syntax on
 set laststatus=2
-set tabstop=4
 set expandtab
 set nu
 set relativenumber
@@ -52,6 +124,12 @@ set listchars=tab:>#,nbsp:_
 set list
 set incsearch
 inoremap jj <Esc>
+
+" Set indentation based on file type
+autocmd Filetype html setlocal ts=2 sts=2 sw=2
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
+
 " Trim whitespace
 autocmd BufWritePre *.* :%s/\s\+$//e
 set nowrap
