@@ -159,7 +159,10 @@ nnoremap <silent><leader>us               :Denite -buffer-name=specs
 
 call denite#custom#map('insert', '<tab>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<s-tab>', '<denite:move_to_previous_line>', 'noremap')
-
+call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+      \ ['.git/', 'node_modules/'])
+call denite#custom#var('file_rec', 'command',
+    \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 "-----------------------------
 "------ Silver Searcher ------
 if executable('ag')
