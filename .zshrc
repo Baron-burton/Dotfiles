@@ -17,7 +17,7 @@ fi
 
 zplug 'arzzen/calc.plugin.zsh'
 zplug 'supercrabtree/k'
-zplug 'zsh-users/zsh-syntax-highlighting', nice:10
+zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 zplug 'felixr/docker-zsh-completion'
 
 # prezto modules
@@ -30,9 +30,8 @@ zplug 'modules/spectrum', from:prezto
 # zplug 'modules/autosuggestions', from:prezto
 
 # powerlevel9k prompt
-zplug 'bhilburn/powerlevel9k'
-
-zplug 'hlissner/zsh-autopair', nice:10
+zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+zplug 'hlissner/zsh-autopair', defer:2
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -74,7 +73,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time docker_machine)
  alias dp='docker ps'
  alias dup='docker-compose up'
  alias dk='docker-compose kill'
- alias demr='docker exec -it myrewards_myrewards.app_1 /bin/bash'
+ alias demr='docker exec -it myrewards_app_1 /bin/bash'
  alias dere='docker exec -it redstone_redstone.app_1 /bin/bash'
  alias demg='docker exec -it mygames_mygames.app_1 /bin/bash'
  alias det='docker exec -it thetavern_web_1 /bin/bash'
