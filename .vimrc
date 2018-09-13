@@ -14,7 +14,6 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-sleuth'
-Plugin 'shougo/denite.nvim'
 Plugin 'vim-scripts/Auto-Pairs'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-surround'
@@ -119,32 +118,6 @@ highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 call matchadd('Error', '\%121v', 100)
 
-"----------------------------
-"---------- Denite ----------
-nnoremap <silent><leader>uu               :Denite -buffer-name=file_rec
-    \ file_rec<cr>
-nnoremap <silent><leader>um               :Denite -buffer-name=models
-    \ -path=`getcwd()`/app/models
-    \ file_rec<cr>
-nnoremap <silent><leader>uc               :Denite -buffer-name=controllers
-    \ -path=`getcwd()`/app/controllers
-    \ file_rec<cr>
-nnoremap <silent><leader>uv               :Denite -buffer-name=views
-    \ -path=`getcwd()`/app/views
-    \ file_rec<cr>
-nnoremap <silent><leader>uj               :Denite -buffer-name=javascripts
-    \ -path=`getcwd()`/app/assets/javascripts
-    \ file_rec<cr>
-nnoremap <silent><leader>us               :Denite -buffer-name=specs
-    \ -path=`getcwd()`/spec
-    \ file_rec<cr>
-
-call denite#custom#map('insert', '<tab>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<s-tab>', '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-      \ ['.git/', 'node_modules/'])
-call denite#custom#var('file_rec', 'command',
-    \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 "-----------------------------
 "------ Silver Searcher ------
 if executable('ag')
