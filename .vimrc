@@ -1,6 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -126,3 +127,7 @@ endif
 
 " bind K to grep word under cursor
 noremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+"-----------------------------
+"---------- Crtl P -----------
+nnoremap <silent><leader>p :CtrlP<CR>
