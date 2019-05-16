@@ -24,6 +24,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'w0rp/ale'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'fatih/vim-go'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -102,18 +103,18 @@ set laststatus=2
 set expandtab
 set nu
 set relativenumber
-set listchars=tab:>#,nbsp:_
-set list
 set incsearch
 inoremap jj <Esc>
 
 " Set indentation based on file type
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+autocmd Filetype go setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 
 " Trim whitespace
-autocmd BufWritePre *.* :%s/\s\+$//e
+autocmd BufWritePre * %s/\s\+$//e
+
 set nowrap
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
