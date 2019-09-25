@@ -11,6 +11,10 @@ if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
     zcompile ~/.zshrc
 fi
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
 ################################################################################
 # zplug
 ################################################################################
@@ -207,22 +211,19 @@ POWERLEVEL9K_SHORTEN_STRATEGY='truncate_from_right'
  alias dp='docker ps'
  alias dup='docker-compose up'
  alias dk='docker-compose kill'
- alias demr='docker exec -it myrewards_app_1 /bin/bash'
- alias dere='docker exec -it redstone_redstone.app_1 /bin/bash'
- alias demg='docker exec -it mygames_mygames.app_1 /bin/bash'
- alias det='docker exec -it thetavern_web_1 /bin/bash'
-
 
  ####################################
  # git
+ alias ga='git add'
  alias gb='git branch'
  alias gc='git checkout'
- alias gs='git status'
- alias ga='git add'
- alias gp='git push'
- alias gpu='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
- alias gco='git commit'
+ alias gco='git commit -v'
+ alias gd='git diff'
  alias gl='git log'
+ alias gp='git push'
+ alias gpl='git pull'
+ alias gpu='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
+ alias gs='git status'
 
  ###################################
  # ENV Variables

@@ -1,7 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+set runtimepath^=~/.vim/bundle/ag
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -25,6 +25,8 @@ Plugin 'w0rp/ale'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'fatih/vim-go'
+Plugin 'rking/ag.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -122,9 +124,6 @@ call matchadd('Error', '\%121v', 100)
 
 "-----------------------------
 "------ Silver Searcher ------
-if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
-endif
 
 " bind K to grep word under cursor
 noremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
@@ -132,3 +131,7 @@ noremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 "-----------------------------
 "---------- Crtl P -----------
 nnoremap <silent><leader>p :CtrlP<CR>
+let g:ctrlp_map = '<c-p>'
+let g:crtlp_cmd = 'CtrlP'
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|tmp|npm-packages-offline-cache)|(\.(swp|ico|git|svn))$'
+let g:ctrlp_max_files=20000
