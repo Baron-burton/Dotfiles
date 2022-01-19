@@ -27,6 +27,8 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'fatih/vim-go'
 Plugin 'rking/ag.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'leafgarland/typescript-vim' " Typescript syntax highlighting
+Plugin 'ianks/vim-tsx' " .tsx syntax highlighting
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -126,7 +128,9 @@ call matchadd('Error', '\%121v', 100)
 "------ Silver Searcher ------
 
 " bind K to grep word under cursor
-noremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+noremap K :Ag "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap ? :Ag<SPACE>
+
 
 "-----------------------------
 "---------- Crtl P -----------

@@ -2,7 +2,7 @@
 # init
 ################################################################################
 
-[[ $( brew list | grep zplug ) ]] || return
+[[ $( brew list --formula | grep zplug ) ]] || return
 
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
@@ -13,7 +13,8 @@ fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 ################################################################################
 # zplug
@@ -47,7 +48,7 @@ if ! zplug check --verbose; then
     fi
 fi
 
-zplug load
+# zplug load # forces the terminal to hang when loading from here
 
 ################################################################################
 # completion
@@ -210,6 +211,7 @@ POWERLEVEL9K_SHORTEN_STRATEGY='truncate_from_right'
 
  alias dp='docker ps'
  alias dup='docker-compose up'
+ alias dd='docker-compose down'
  alias dk='docker-compose kill'
 
  ####################################
@@ -224,7 +226,10 @@ POWERLEVEL9K_SHORTEN_STRATEGY='truncate_from_right'
  alias gpl='git pull'
  alias gpu='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
  alias gs='git status'
+ alias clean_branches='git branch -d $(git branch --merged=master | grep -v master)'
 
  ###################################
  # ENV Variables
  export EDITOR=vim
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/bitcomplete bit
