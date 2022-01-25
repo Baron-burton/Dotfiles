@@ -4,7 +4,10 @@
 
 [[ $( brew list --formula | grep zplug ) ]] || return
 
-export ZPLUG_HOME=/usr/local/opt/zplug
+eval "$(rbenv init - zsh)"
+export LDFLAGS="-L/opt/homebrew/opt/readline/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/readline/include"
+export ZPLUG_HOME=/opt/homebrew/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
 if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
@@ -48,7 +51,7 @@ if ! zplug check --verbose; then
     fi
 fi
 
-# zplug load # forces the terminal to hang when loading from here
+zplug load
 
 ################################################################################
 # completion
